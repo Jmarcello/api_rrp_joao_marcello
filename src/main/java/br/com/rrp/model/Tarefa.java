@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+import br.com.rrp.java.Data;
+
 @javax.persistence.Entity
 public class Tarefa {
 
@@ -20,7 +22,23 @@ public class Tarefa {
 	@Column(nullable = false)
 	private String dataMaxima;
 
+	private String dataMaximaPorExtenso = Data.getData("dd/MM/yyyy HH:mm:ss");
+
+	private String dataCriacaoTarefa = Data.getData("dd/MM/yyyy HH:mm:ss");
+
+	private String dataCriacaoPorExtenso;
+
+	private String observacao;
+
+	private String autor;
+
+	private int diasParaRealizarTarefa;
+
+	private SituacaoTarefa situacaoTarefa = SituacaoTarefa.EM_ABERTO;
+
 	private boolean cumprida = false;
+
+	private boolean vencida = false;
 
 	public Long getId() {
 		return id;
@@ -60,6 +78,70 @@ public class Tarefa {
 
 	public void setCumprida(boolean cumprida) {
 		this.cumprida = cumprida;
+	}
+
+	public boolean isVencida() {
+		return vencida;
+	}
+
+	public void setVencida(boolean vencida) {
+		this.vencida = vencida;
+	}
+
+	public SituacaoTarefa getSituacaoTarefa() {
+		return situacaoTarefa;
+	}
+
+	public void setSituacaoTarefa(SituacaoTarefa situacaoTarefa) {
+		this.situacaoTarefa = situacaoTarefa;
+	}
+
+	public String getDataCriacaoPorExtenso() {
+		return dataCriacaoPorExtenso;
+	}
+
+	public void setDataCriacaoPorExtenso(String dataCriacaoPorExtenso) {
+		this.dataCriacaoPorExtenso = dataCriacaoPorExtenso;
+	}
+
+	public String getDataMaximaPorExtenso() {
+		return dataMaximaPorExtenso;
+	}
+
+	public void setDataMaximaPorExtenso(String dataMaximaPorExtenso) {
+		this.dataMaximaPorExtenso = dataMaximaPorExtenso;
+	}
+
+	public String getDataCriacaoTarefa() {
+		return dataCriacaoTarefa;
+	}
+
+	public void setDataCriacaoTarefa(String dataCriacaoTarefa) {
+		this.dataCriacaoTarefa = dataCriacaoTarefa;
+	}
+
+	public int getDiasParaRealizarTarefa() {
+		return diasParaRealizarTarefa;
+	}
+
+	public void setDiasParaRealizarTarefa(int diasParaRealizarTarefa) {
+		this.diasParaRealizarTarefa = diasParaRealizarTarefa;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
 	}
 
 	@Override
