@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ import br.com.rrp.repository.TarefasRepository;
 import br.com.rrp.service.TarefaService;
 
 //Code By: João Marcello Cardoso - 06/11/2021
+//New Version: 27/11/2021 
 
 @Controller
 @RestController
@@ -62,10 +64,23 @@ public class TarefasResources {
 		return tarefaService.salvar(tarefa);
 	}
 
+	@PutMapping("/atualizar")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Tarefa atualizar(@RequestBody Tarefa tarefa) {
+
+		return tarefaService.atualizarTarefa(tarefa);
+	}
+
 	@PatchMapping("/modificar-cumprida/{id}")
 	public Optional<Tarefa> modificarCumprida(@PathVariable("id") Long id) {
 
 		return tarefaService.marcarCumprida(id);
+	}
+	
+	@PatchMapping("/cancelar/{id}")
+	public Optional<Tarefa> cancelarTarefa(@PathVariable("id") Long id) {
+
+		return tarefaService.cancelarTarefa(id);
 	}
 
 	@DeleteMapping("/delete/{id}")
